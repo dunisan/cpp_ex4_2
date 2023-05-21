@@ -12,6 +12,10 @@ namespace ariel{
         return "(" + std::to_string(this->_x) + "," + std::to_string(this->_y) + ")";
     }
     Point Point::moveTowards(const Point& source, const Point& distination, const double range){
+
+        if(range<=0){
+            throw std::invalid_argument("no such as negitive distance!");
+        }
         
         double distance = sqrt(pow(distination._x - source._x, 2) + pow(distination._y - source._y, 2) * 1.0);
          

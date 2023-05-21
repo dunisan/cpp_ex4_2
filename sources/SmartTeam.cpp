@@ -3,6 +3,6 @@
 namespace ariel{
  
     void SmartTeam::attack(Team* enemy){}
-    void SmartTeam::print(){} 
+    string SmartTeam::print(){return " ";} 
 
 }

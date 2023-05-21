@@ -14,13 +14,20 @@
 namespace ariel{
 
     class Team{
-        private:
+        protected:
             vector<Character*> team;
             Character* leader; 
 
         public: 
 
-            Team(Character* leader):leader(leader){}
+            Team(Character* leader):leader(leader){
+                if(leader->getIsFighting()){
+                    throw std::runtime_error("leader is in a different fight");
+                }
+                team.push_back(leader); 
+                leader->setIsFighting(true); 
+                
+            }
              virtual ~Team() {}
             Team(const Team& other):leader(other.leader){}            
 
@@ -44,7 +51,7 @@ namespace ariel{
             void add(Character*); 
             virtual void attack(Team*);
             int stillAlive(); 
-            virtual void print();
+            virtual string print();
             Character *getLeader(){return this->leader;}; 
 
             static Character* nearestChar(Team*, Character*); 

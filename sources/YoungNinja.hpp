@@ -11,7 +11,7 @@ namespace ariel{
 
     class YoungNinja: public Ninja{
         public: 
-            YoungNinja(const string& name, const Point location): Ninja(name,location,YOUNGSPEED,YOUNGHITPOINTS){}
+            YoungNinja(const string& name, const Point location): Ninja(name,location,YOUNGHITPOINTS, YOUNGSPEED){}
     }; 
 
 }

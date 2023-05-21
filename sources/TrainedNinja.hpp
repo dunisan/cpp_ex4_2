@@ -5,7 +5,7 @@
 
 
 constexpr int TRAINEDSPEED = 8; 
-constexpr int TRAINEDHITPOINTS = 150;
+constexpr int TRAINEDHITPOINTS = 120;
 
 
 
@@ -13,7 +13,7 @@ namespace ariel{
 
     class TrainedNinja: public Ninja{
         public: 
-            TrainedNinja(const string& name, const Point location): Ninja(name,location,TRAINEDSPEED,TRAINEDHITPOINTS){}
+            TrainedNinja(const string& name, const Point location): Ninja(name,location,TRAINEDHITPOINTS, TRAINEDSPEED){}
     }; 
 
 }

@@ -4,8 +4,8 @@ namespace ariel{
         
         bool Character::isAlive(){
                 if(this->hit_points>0)
-                        return false;
-                return true; 
+                        return true;
+                return false; 
         } 
         
         double Character::distance(const Character* other){
@@ -13,6 +13,9 @@ namespace ariel{
         } 
 
         void Character::hit(int num_of_hits){
+                if(num_of_hits<0){
+                        throw std::invalid_argument("can't hit with negitive values!");
+                }
                 this->hit_points -= num_of_hits; 
         }
 
@@ -31,4 +34,10 @@ namespace ariel{
                 return this->hit_points;
         }   
         
+        bool Character::getIsFighting(){
+                return is_fighting; 
+        } 
+        void Character::setIsFighting(bool is_fighting){
+              this->is_fighting = is_fighting;  
+        }
 }

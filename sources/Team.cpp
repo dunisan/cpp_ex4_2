@@ -1,20 +1,23 @@
 #include "Team.hpp"
 #include <limits>
 #include <typeinfo>
+#include <unordered_set>
 
 namespace ariel{
  
     void Team::add(Character* fighter){
-        if(this->team.capacity() < 10){
+        if(this->team.size() < 10){
             team.push_back(fighter);  
         }
         else
-            throw std::invalid_argument("More then 10 fighters in team!"); 
+            throw std::runtime_error("More then 10 fighters in team!"); 
         
     }
 
     void Team::attack(Team* enemy){
 
+
+        // error checking
         if(enemy == nullptr){
             throw std::invalid_argument("null object for teanm!"); 
         }
@@ -23,38 +26,81 @@ namespace ariel{
             throw std::invalid_argument("Team attack itself"); 
         }
 
+
+        // choose new leader if needed 
         if(!this->leader->isAlive()){
-            this->leader = nearestChar(this, this->leader); 
+            this->leader = nearestChar(this, this->leader);
         }
 
-
-        //enemy_to_attack = nearestEnemy();
-        for (Character *charPtr : this->team) {
+        
+        for (Character *attacker : this->team) {
             
-            // go over the cowboys
+            // if Attacker is not alive - continue; 
+            if(!attacker->isAlive()){
+                continue;
+            }
+            
 
-            // if(charPtr->isAlive() && enemy_to_attack.isAlive()){
-            //     // if memeber is cowboy 
-            //         // if has boolets  - shoot 
-            //         // else - reload
-                
-            //     // if enemy is dead - choose new enemy 
-            //     // if enemy team is dead - stop attacking  
-            // }
+            // find the nearest enemy to the teamleader
+            Character* enemy_to_attack = nearestChar(enemy, enemy->getLeader()); 
 
-        // anoter for loop to go ever the ninja in the tame way. 
+            // attack him! 
 
-        // neet to implement fund leader and choose enemy- instead - find nearest point from a specific source.. 
+            if(typeid(attacker)== typeid(Cowboy)){
+                            std::cout << "!!!!!!!!!!!111"<< std::endl;
+
+                Cowboy* cowboy = dynamic_cast<Cowboy *>(attacker);
+
+                if(cowboy->hasboolets()){
+                    cowboy->shoot(enemy_to_attack); 
+                }
+                else{
+                    cowboy->reload(); 
+                }
+            }else{
+                std::cout << "333333333333"<< std::endl;
+
+                Ninja* ninja = dynamic_cast<Ninja *>(attacker);
+
+                if(ninja->distance(enemy_to_attack) < 1.0){
+                    ninja->slash(enemy_to_attack);
+                }
+                else{
+                    ninja->move(enemy_to_attack); 
+                }
+            }
+                                std::cout << "22222222"<< std::endl;
+
+        }
 
         
-}
+        
+    }
 
-    // Nearesr char(team, char leader)
 
+    
+    int Team::stillAlive(){
+
+
+        int counter=0; 
+        for (Character *attacker : this->team) {
+            if(attacker->isAlive()){
+                counter++; 
+            }
+        }
+        return counter;
 
     }
-    int Team::stillAlive(){return 0;}
-    void Team::print(){} 
+
+    string Team::print(){
+        
+        std::string toprint; 
+        for (Character *attacker : this->team) {
+            toprint += attacker->print();
+            toprint += '\n'; 
+        }
+        return toprint; 
+    } 
 
 
     Character *Team::nearestChar(Team* team, Character* leader){

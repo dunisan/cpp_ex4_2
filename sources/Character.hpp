@@ -12,8 +12,12 @@ namespace ariel{
         const string name; 
         int hit_points;
         Point location; 
+        bool is_fighting; 
+
     protected:
-        Character(const string &name, const Point location, const int hit_points ):name(name), location(location),hit_points(hit_points){}
+        Character(const string &name, const Point location, const int hit_points ):name(name), location(location),hit_points(hit_points),is_fighting(false){}
+        virtual ~Character() = default;
+
         
     public:
         
@@ -25,6 +29,8 @@ namespace ariel{
         Point getLocation(); 
         string print();  
         int getHitPoints();
+        bool getIsFighting(); 
+        void setIsFighting(bool); 
     };
 
 }
