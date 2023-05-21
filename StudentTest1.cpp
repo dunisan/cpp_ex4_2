@@ -1,10 +1,10 @@
 #include "doctest.h"
 
-#include "sources/Character.hpp"
-#include "sources/OldNinja.hpp"
-#include "sources/YoungNinja.hpp"
-#include "sources/TrainedNinja.hpp"
-#include "sources/Cowboy.hpp"
+// #include "sources/Character.hpp"
+// #include "sources/OldNinja.hpp"
+// #include "sources/YoungNinja.hpp"
+// #include "sources/TrainedNinja.hpp"
+// #include "sources/Cowboy.hpp">
 #include "sources/Team.hpp"
 #include "sources/Team2.hpp"
 #include <random>
