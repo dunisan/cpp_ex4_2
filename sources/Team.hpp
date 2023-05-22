@@ -14,7 +14,7 @@
 namespace ariel{
 
     class Team{
-        protected:
+        private:
             vector<Character*> team;
             Character* leader; 
 
@@ -28,7 +28,12 @@ namespace ariel{
                 leader->setIsFighting(true); 
                 
             }
-             virtual ~Team() {}
+            virtual ~Team() {
+                for (Character *fighter: team) {
+                    delete fighter;
+                }   
+            }
+
             Team(const Team& other):leader(other.leader){}            
 
             Team& operator=(const Team& other) {
@@ -53,6 +58,9 @@ namespace ariel{
             int stillAlive(); 
             virtual string print();
             Character *getLeader(){return this->leader;}; 
+            void setLeader(Character* leader){this->leader = leader;}
+            vector<Character*> getTeam(){return team;}
+
 
             static Character* nearestChar(Team*, Character*); 
 

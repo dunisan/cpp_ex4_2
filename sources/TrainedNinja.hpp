@@ -4,7 +4,7 @@
 #include "Ninja.hpp"
 
 
-constexpr int TRAINEDSPEED = 8; 
+constexpr int TRAINEDSPEED = 12; 
 constexpr int TRAINEDHITPOINTS = 120;
 
 

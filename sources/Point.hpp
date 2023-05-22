@@ -13,7 +13,7 @@ namespace ariel{
             Point(const double x_axis, double y_axis): _x(x_axis), _y(y_axis){}
             double distance(const Point&); 
             std::string print(); 
-            static Point moveTowards(const Point& ,const Point& , double); 
+            static Point moveTowards(Point ,Point, double); 
 
             double get_x(); 
             double get_y(); 

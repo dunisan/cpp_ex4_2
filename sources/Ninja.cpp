@@ -3,6 +3,7 @@
 namespace ariel{
     void Ninja::move(Character* enemy){
         Point newpoint = Point::moveTowards(this->getLocation(),enemy->getLocation(),this->speed); 
+        this->setLocation(newpoint); 
     }
     void Ninja::slash(Character* enemy){
         if(!this->isAlive()){

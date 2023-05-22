@@ -40,4 +40,8 @@ namespace ariel{
         void Character::setIsFighting(bool is_fighting){
               this->is_fighting = is_fighting;  
         }
+
+        void Character::setLocation(Point newloaction){
+                this->location = newloaction; 
+        }
 }
