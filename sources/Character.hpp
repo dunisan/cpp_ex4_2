@@ -16,10 +16,13 @@ namespace ariel{
 
     protected:
     public:
+
+        // this part i got a little help from web - up to the isAlive() function  
         Character(const string &name, const Point location, const int hit_points ):name(name), location(location),hit_points(hit_points),is_fighting(false){}
         virtual ~Character() = default;
-        Character(Character& character):name(character.name),location(character.location), hit_points(character.hit_points), is_fighting(character.is_fighting){}; // Copy constructor
-        Character (Character&& character) noexcept: name(character.name),location(character.location), hit_points(character.hit_points), is_fighting(character.is_fighting){}; // Copy assignment operator
+        Character(Character& character):name(character.name),location(character.location), hit_points(character.hit_points), is_fighting(character.is_fighting){};
+        Character (Character&& character) noexcept: name(character.name),location(character.location), hit_points(character.hit_points), is_fighting(character.is_fighting){};
+        
         Character& operator = (const Character& other){
             if (this != &other) {
             }
@@ -31,13 +34,18 @@ namespace ariel{
             return *this;
         } 
 
+
+        // character methods 
+        
         bool isAlive(); // return if hit_point are left
         double distance(const Character*); // distance from different character
-        void hit(int); // got hit. reduce life points 
+        void hit(int); // got hit. reduce life points ]
+
+        // getters and setters 
         string getName(); 
         Point getLocation(); 
         string print();  
-        int getHitPoints();
+        int getHitPoints(); 
         bool getIsFighting(); 
         void setIsFighting(bool); 
         void setLocation(Point); 

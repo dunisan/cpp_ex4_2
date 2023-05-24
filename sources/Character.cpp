@@ -9,6 +9,9 @@ namespace ariel{
         } 
         
         double Character::distance(const Character* other){
+                if(other == nullptr){
+                        throw std::invalid_argument("null character");
+                }
                 return this->location.distance(other->location); 
         } 
 
@@ -22,11 +25,12 @@ namespace ariel{
         string Character::getName(){
                 return this->name; 
         } 
+
         Point Character::getLocation(){
                 return this->location;
         } 
+
         string Character::print(){
-         
                 return this->name + " " + std::to_string(this->hit_points) + " " + this->location.print();
         } 
 
@@ -37,6 +41,7 @@ namespace ariel{
         bool Character::getIsFighting(){
                 return is_fighting; 
         } 
+        
         void Character::setIsFighting(bool is_fighting){
               this->is_fighting = is_fighting;  
         }

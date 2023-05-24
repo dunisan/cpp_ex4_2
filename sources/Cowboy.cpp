@@ -19,6 +19,7 @@ namespace ariel{
             return;
         }
     } 
+    
     bool Cowboy::hasboolets(){
         if(this->num_of_bullets>0){
             return true; 

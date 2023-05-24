@@ -20,7 +20,7 @@ namespace ariel{
 
     void Team::attack(Team* enemy){
 
-        
+    
         // error checking
         if(enemy == nullptr){
             throw std::invalid_argument("null object for team!"); 
@@ -36,26 +36,28 @@ namespace ariel{
         if(!this->leader->isAlive()){
             this->leader = nearestChar(this, this->leader);
 
+            // if all team are dead 
             if(this->leader == NULL){
                 return; 
             }
         }
 
-        
-
-        
+        // go over the team
         for (Character *attacker : this->team) {
-            // if Attacker is not alive - continue; 
+            // if Attacker is not alive - go on to next member of the team.  
             if(!attacker->isAlive()){
                 continue;
             }
+
             // find the nearest enemy to the teamleader
             Character* enemy_to_attack = nearestChar(enemy, this->leader);
+            
+            // enemy team is dead 
             if(enemy_to_attack == NULL){
                 return; 
             } 
 
-            // attack him!
+            // attack him the enemy - check if attacker is cowboy or ninja 
             if(Cowboy* cowboy = dynamic_cast<Cowboy *>(attacker)){
                 
                 if(cowboy->hasboolets()){
@@ -68,7 +70,6 @@ namespace ariel{
 
                 Ninja* ninja = dynamic_cast<Ninja *>(attacker);
 
-
                 if(ninja->distance(enemy_to_attack) < 1.0){
                     ninja->slash(enemy_to_attack);
                 }
@@ -76,13 +77,8 @@ namespace ariel{
                     ninja->move(enemy_to_attack); 
 
                 }
-
             }
-
         }
-
-        
-        
     }
 
 

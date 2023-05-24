@@ -65,6 +65,5 @@ namespace ariel{
 
         
     }
-    string Team2::print(){return " ";} 
 
 }

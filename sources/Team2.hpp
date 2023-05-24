@@ -9,6 +9,5 @@ namespace ariel{
         public: 
             Team2(Character* leader):Team(leader) {}
             void attack(Team* enemy) override;
-            string print() override; 
     };
 }
