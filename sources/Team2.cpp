@@ -17,8 +17,8 @@ namespace ariel{
         // choose new leader if needed 
         if(!this->getLeader()->isAlive()){
             this->setLeader(nearestChar(this, this->getLeader())); 
-
-            if(this->getLeader() == NULL){
+            
+            if(this->getLeader() == NULL){ // no one left in team
                 return; 
             }
         }
@@ -27,17 +27,18 @@ namespace ariel{
 
         
         for (Character *attacker : this->getTeam()) {
-            // if Attacker is not alive - continue; 
+            //1. if Attacker is not alive - continue to next teammate; 
             if(!attacker->isAlive()){
                 continue;
             }
-            // find the nearest enemy to the teamleader
+
+            //2. find the nearest enemy to the teamleader
             Character* enemy_to_attack = nearestChar(enemy, this->getLeader());
             if(enemy_to_attack == NULL){
                 return; 
             } 
 
-            // attack him!
+            //3.attack him!
             if(Cowboy* cowboy = dynamic_cast<Cowboy *>(attacker)){
                 
                 if(cowboy->hasboolets()){
@@ -46,10 +47,9 @@ namespace ariel{
                 else{
                     cowboy->reload(); 
                 }
-            }else{
+            }else{ // attacker is ninja
 
                 Ninja* ninja = dynamic_cast<Ninja *>(attacker);
-
 
                 if(ninja->distance(enemy_to_attack) < 1.0){
                     ninja->slash(enemy_to_attack);

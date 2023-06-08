@@ -9,7 +9,7 @@ namespace ariel{
 
     class Cowboy: public Character{
         private:
-            int num_of_bullets;
+            int num_of_bullets; // num of bullets left 
 
         public: 
             Cowboy(const string& name, const Point location):Character(name,location, COWBOYHITPOINTS), num_of_bullets(COWBOYBULLETS){}

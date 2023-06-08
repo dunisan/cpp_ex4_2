@@ -9,29 +9,28 @@ namespace ariel{
     {
     private:
 
-        const string name; 
-        int hit_points;
-        Point location; 
-        bool is_fighting; 
+        const string name; // name of char
+        int hit_points; // hit points that are left 
+        Point location; // current location 
+        bool is_fighting; // is in middle of a fight 
 
-    protected:
     public:
-
-        // this part i got a little help from web - up to the isAlive() function  
+        // constructors and disructor and assignment 
         Character(const string &name, const Point location, const int hit_points ):name(name), location(location),hit_points(hit_points),is_fighting(false){}
         virtual ~Character() = default;
         Character(Character& character):name(character.name),location(character.location), hit_points(character.hit_points), is_fighting(character.is_fighting){};
         Character (Character&& character) noexcept: name(character.name),location(character.location), hit_points(character.hit_points), is_fighting(character.is_fighting){};
         
-        Character& operator = (const Character& other){
+        Character& operator = (Character& other){
             if (this != &other) {
             }
-            return *this;
+            return other;
         }
+
         Character& operator=(Character&& other ) noexcept{
              if (this != &other) {
             }
-            return *this;
+            return other;
         } 
 
 
@@ -46,7 +45,7 @@ namespace ariel{
         Point getLocation(); 
         string print();  
         int getHitPoints(); 
-        bool getIsFighting(); 
+        bool getIsFighting();   
         void setIsFighting(bool); 
         void setLocation(Point); 
     };

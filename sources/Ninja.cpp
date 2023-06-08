@@ -6,6 +6,7 @@ namespace ariel{
         this->setLocation(newpoint); 
     }
     void Ninja::slash(Character* enemy){
+        // check if this is alive, not himself and that enemy is alive. 
         if(!this->isAlive()){
             throw std::runtime_error("Attacking with dead man");
         }

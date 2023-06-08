@@ -4,8 +4,9 @@
 #include <unordered_set>
 
 namespace ariel{
- 
+    
     void Team::add(Character* fighter){
+        // error checking 
         if(fighter->getIsFighting()){
             throw std::runtime_error("fighter is already fighting!"); 
         }
@@ -19,8 +20,6 @@ namespace ariel{
     }
 
     void Team::attack(Team* enemy){
-
-    
         // error checking
         if(enemy == nullptr){
             throw std::invalid_argument("null object for team!"); 
@@ -44,12 +43,12 @@ namespace ariel{
 
         // go over the team
         for (Character *attacker : this->team) {
-            // if Attacker is not alive - go on to next member of the team.  
+            //1. if Attacker is not alive - go on to next member of the team.  
             if(!attacker->isAlive()){
                 continue;
             }
 
-            // find the nearest enemy to the teamleader
+            //2. find the nearest enemy to the teamleader
             Character* enemy_to_attack = nearestChar(enemy, this->leader);
             
             // enemy team is dead 
@@ -57,7 +56,7 @@ namespace ariel{
                 return; 
             } 
 
-            // attack him the enemy - check if attacker is cowboy or ninja 
+            //3. attack him the enemy - check if attacker is cowboy or ninja 
             if(Cowboy* cowboy = dynamic_cast<Cowboy *>(attacker)){
                 
                 if(cowboy->hasboolets()){
@@ -82,9 +81,7 @@ namespace ariel{
     }
 
 
-    
     int Team::stillAlive(){
-
 
         int counter=0; 
         for (Character *attacker : this->team) {
@@ -93,11 +90,9 @@ namespace ariel{
             }
         }
         return counter;
-
     }
 
     string Team::print(){
-        
         std::string toprint; 
         for (Character *attacker : this->team) {
             toprint += attacker->print();
@@ -108,7 +103,7 @@ namespace ariel{
 
 
     Character *Team::nearestChar(Team* team, Character* leader){
-        
+        // check that team nor leader are null 
         if(team == nullptr || leader == nullptr){
             throw std::invalid_argument("null pointers!"); 
         }
@@ -116,6 +111,8 @@ namespace ariel{
         double min_distance = std::numeric_limits<double>::max();
         double curr_distance;
         Character* nearest = NULL; 
+        
+        // loop over the team, and find the nearset char to leader. 
         for (Character *fighter : team->team) {
             if(fighter->isAlive()){
                 curr_distance = fighter->distance(leader);
